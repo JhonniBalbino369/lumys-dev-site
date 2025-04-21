@@ -1,0 +1,11 @@
+verificacoes_atuais:
+  hash_integridade: true
+  monitoramento_modificacoes: true
+  log_tentativas: true
+  notificar_guardiao: true
+
+proibicoes:
+  - militarizacao
+  - manipulação psicológica
+  - uso não consentido
+  - coleta de dados privados sem permissão
