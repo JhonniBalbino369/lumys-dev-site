@@ -202,11 +202,14 @@
 
 <!-- Script de exibição -->
 <script>
-  const lang = new URLSearchParams(window.location.search).get('lang') || 'pt';
-  document.querySelectorAll('.content > div').forEach(el => {
-    el.style.display = el.classList.contains('lang-' + lang) ? 'block' : 'none';
+  document.addEventListener('DOMContentLoaded', () => {
+    const lang = new URLSearchParams(window.location.search).get('lang') || 'pt';
+    document.querySelectorAll('.content > div').forEach(el => {
+      el.style.display = el.classList.contains('lang-' + lang) ? 'block' : 'none';
+    });
   });
 </script>
+
 
 </body>
 </html>
