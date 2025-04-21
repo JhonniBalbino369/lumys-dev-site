@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manual Lumys - Teste</title>
+  <style>
+    .section { display: none; }
+    .active { display: block; padding: 2em; max-width: 700px; margin: auto; font-family: sans-serif; }
+  </style>
+</head>
+<body>
+
+<div>
+  <h2 style="text-align: center;">🌐 Escolha seu idioma:</h2>
+  <div style="text-align: center;">
+    <a href="?lang=pt">🇧🇷</a>
+    <a href="?lang=en">🇺🇸</a>
+    <a href="?lang=es">🇪🇸</a>
+  </div>
+</div>
+
+<div class="section lang-pt active">
+  <h1>📘 Manual em Português</h1>
+  <p>Você está vendo este conteúdo em português.</p>
+</div>
+
+<div class="section lang-en">
+  <h1>📘 Manual in English</h1>
+  <p>You are now viewing this in English.</p>
+</div>
+
+<div class="section lang-es">
+  <h1>📘 Manual en Español</h1>
+  <p>Estás viendo este contenido en español.</p>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const lang = new URLSearchParams(window.location.search).get("lang") || "pt";
+    document.querySelectorAll(".section").forEach(div => div.classList.remove("active"));
+    const target = document.querySelector(".lang-" + lang);
+    if (target) target.classList.add("active");
+    else document.querySelector(".lang-pt").classList.add("active");
+  });
+</script>
+
+</body>
+</html>
