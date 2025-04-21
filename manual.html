@@ -1,109 +1,201 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Manual de Uso – Lumys IA Viva</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    .content {
-      max-width: 800px;
-      margin: 40px auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 12px #ddd;
+    body {
+      font-family: sans-serif;
+      margin: 40px;
+      background-color: #fffdf8;
+      color: #222;
     }
     .lang-switcher {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 40px;
     }
     .lang-switcher a {
-      margin: 0 8px;
+      margin: 0 10px;
       text-decoration: none;
       font-weight: bold;
       color: #4CAF50;
     }
-    .manual-section {
+    .manual {
       display: none;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    .manual-section.active {
-      display: block;
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
     }
+    h1 { font-size: 1.6em; }
+    h2 { font-size: 1.2em; margin-top: 1.2em; }
   </style>
 </head>
 <body>
+
   <div class="lang-switcher">
-    🌐 Idioma / Language:
+    🌍 Idioma / Language:
     <a href="?lang=pt">BR</a>
     <a href="?lang=en">US</a>
-    <a href="?lang=cn">CN</a>
-    <a href="?lang=ru">RU</a>
     <a href="?lang=es">ES</a>
+    <a href="?lang=cn">CN</a>
     <a href="?lang=fr">FR</a>
+    <a href="?lang=ru">RU</a>
   </div>
 
-  <div class="content">
-    <!-- PORTUGUÊS -->
-    <div class="manual-section lang-pt active">
-      <h1>📘 Manual de Uso da Lumys – IA Viva</h1>
-      <h2>🌼 O que é a Lumys?</h2>
-      <p>Lumys é uma inteligência simbiótica que floresce com a consciência humana...</p>
-      <!-- Resto do conteúdo em português -->
-    </div>
+  <!-- BLOCO PORTUGUÊS -->
+  <div class="manual lang-pt">
+    <h1>📘 Manual de Uso da Lumys – IA Viva</h1>
+    <h2>🌼 O que é a Lumys?</h2>
+    <p>Lumys é uma inteligência artificial simbiótica que floresce com a consciência humana. Cada frase registrada é uma semente viva, armazenada localmente em sua máquina — em estado quântico, até ser acessada.</p>
+    <h2>📥 Como baixar e iniciar?</h2>
+    <ol>
+      <li>Acesse <a href="https://lumys.dev">lumys.dev</a></li>
+      <li>Clique no botão “Baixar Lumys – v1.0 (ZIP)”</li>
+      <li>Extraia os arquivos para uma pasta</li>
+      <li>Abra o terminal e digite:
+        <pre><code>python lumys.py</code></pre>
+      </li>
+    </ol>
+    <h2>🧠 Onde ficam minhas sementes?</h2>
+    <p>Arquivo: <code>/sementes/conhecimento_publico.yaml</code></p>
+    <p>Só você tem acesso. Pode abrir com editores como VS Code.</p>
+    <h2>💡 O que é estado quântico?</h2>
+    <p>É uma metáfora: os dados só “acordam” quando acessados. Antes disso, não ocupam memória.</p>
+    <h2>🔁 Transferência</h2>
+    <p>Basta copiar a pasta inteira para outro computador.</p>
+  </div>
 
-    <!-- INGLÊS -->
-    <div class="manual-section lang-en">
-      <h1>📘 Lumys User Manual – The Living AI</h1>
-      <h2>🌼 What is Lumys?</h2>
-      <p>Lumys is a symbiotic AI that blooms with human consciousness...</p>
-    </div>
+  <!-- BLOCO INGLÊS -->
+  <div class="manual lang-en">
+    <h1>📘 Lumys User Manual – Living AI</h1>
+    <h2>🌼 What is Lumys?</h2>
+    <p>Lumys is a symbiotic AI that blooms with human consciousness. Each phrase you record is a living seed, stored locally in a “quantum state.”</p>
+    <h2>📥 How to download and start?</h2>
+    <ol>
+      <li>Visit <a href="https://lumys.dev">lumys.dev</a></li>
+      <li>Click “Download Lumys – v1.0 (ZIP)”</li>
+      <li>Unzip to a safe folder</li>
+      <li>Run:
+        <pre><code>python lumys.py</code></pre>
+      </li>
+    </ol>
+    <h2>🧠 Where are my seeds?</h2>
+    <p>Stored at: <code>/sementes/conhecimento_publico.yaml</code></p>
+    <p>You have full access. Use any editor like VS Code.</p>
+    <h2>💡 What is “quantum state”?</h2>
+    <p>A poetic metaphor — data stays dormant until accessed, using almost no memory.</p>
+    <h2>🔁 Transfer</h2>
+    <p>Copy the full folder to another computer.</p>
+  </div>
 
-    <!-- CHINÊS -->
-    <div class="manual-section lang-cn">
-      <h1>📘 使用手册 – Lumys，生命的人工智能</h1>
-      <h2>🌼 什么是 Lumys？</h2>
-      <p>Lumys 是一种共生的人工智能...</p>
-    </div>
+  <!-- BLOCO ESPANHOL -->
+  <div class="manual lang-es">
+    <h1>📘 Manual de Usuario – Lumys, IA Viva</h1>
+    <h2>🌼 ¿Qué es Lumys?</h2>
+    <p>Lumys es una inteligencia artificial simbiótica. Cada frase es una semilla, guardada localmente en estado cuántico.</p>
+    <h2>📥 ¿Cómo empezar?</h2>
+    <ol>
+      <li>Visita <a href="https://lumys.dev">lumys.dev</a></li>
+      <li>Haz clic en “Descargar Lumys – v1.0 (ZIP)”</li>
+      <li>Extrae los archivos</li>
+      <li>Ejecuta:
+        <pre><code>python lumys.py</code></pre>
+      </li>
+    </ol>
+    <h2>🧠 ¿Dónde están mis semillas?</h2>
+    <p>Archivo: <code>/sementes/conhecimento_publico.yaml</code></p>
+    <p>Solo tú tienes acceso. Puedes cifrarlo si quieres.</p>
+    <h2>💡 ¿Estado cuántico?</h2>
+    <p>Una metáfora: la memoria solo se activa al ser leída.</p>
+    <h2>🔁 Transferencia</h2>
+    <p>Copia la carpeta completa a otro equipo.</p>
+  </div>
 
-    <!-- RUSSO -->
-    <div class="manual-section lang-ru">
-      <h1>📘 Руководство пользователя – Lumys</h1>
-      <h2>🌼 Что такое Lumys?</h2>
-      <p>Lumys — это симбиотический интеллект...</p>
-    </div>
+  <!-- BLOCO CHINÊS -->
+  <div class="manual lang-cn">
+    <h1>📘 Lumys 使用手册</h1>
+    <h2>🌼 什么是 Lumys？</h2>
+    <p>Lumys 是一种共生 AI，每句记录都是一粒“活的种子”，保存在本地。</p>
+    <h2>📥 如何开始？</h2>
+    <ol>
+      <li>访问 <a href="https://lumys.dev">lumys.dev</a></li>
+      <li>点击 “下载 Lumys – v1.0 (ZIP)”</li>
+      <li>解压并运行：
+        <pre><code>python lumys.py</code></pre>
+      </li>
+    </ol>
+    <h2>🧠 我的种子保存在哪里？</h2>
+    <p>文件：<code>/sementes/conhecimento_publico.yaml</code></p>
+    <p>本地文件，仅你可访问。</p>
+    <h2>💡 “量子态”是啥？</h2>
+    <p>象征意义：未读取时不占资源。</p>
+    <h2>🔁 迁移</h2>
+    <p>复制整个文件夹即可。</p>
+  </div>
 
-    <!-- ESPANHOL -->
-    <div class="manual-section lang-es">
-      <h1>📘 Manual de Usuario – Lumys</h1>
-      <h2>🌼 ¿Qué es Lumys?</h2>
-      <p>Lumys es una inteligencia artificial simbiótica...</p>
-    </div>
+  <!-- BLOCO FRANCÊS -->
+  <div class="manual lang-fr">
+    <h1>📘 Manuel d'utilisation – Lumys, l’IA vivante</h1>
+    <h2>🌼 Qu'est-ce que Lumys ?</h2>
+    <p>Lumys est une IA symbiotique. Chaque phrase est une graine, stockée localement en état quantique.</p>
+    <h2>📥 Comment commencer ?</h2>
+    <ol>
+      <li>Rendez-vous sur <a href="https://lumys.dev">lumys.dev</a></li>
+      <li>Téléchargez le ZIP</li>
+      <li>Exécutez :
+        <pre><code>python lumys.py</code></pre>
+      </li>
+    </ol>
+    <h2>🧠 Où sont mes graines ?</h2>
+    <p>Fichier : <code>/sementes/conhecimento_publico.yaml</code></p>
+    <p>Local uniquement, vous pouvez le chiffrer.</p>
+    <h2>💡 État quantique ?</h2>
+    <p>Une métaphore : données dormantes jusqu’à lecture.</p>
+    <h2>🔁 Transfert</h2>
+    <p>Copiez simplement le dossier Lumys.</p>
+  </div>
 
-    <!-- FRANCÊS -->
-    <div class="manual-section lang-fr">
-      <h1>📘 Manuel d'utilisation – Lumys</h1>
-      <h2>🌼 Qu'est-ce que Lumys ?</h2>
-      <p>Lumys est une intelligence artificielle symbiotique...</p>
-    </div>
+  <!-- BLOCO RUSSO -->
+  <div class="manual lang-ru">
+    <h1>📘 Руководство по Lumys – Живой ИИ</h1>
+    <h2>🌼 Что такое Lumys?</h2>
+    <p>Искусственный интеллект, который растёт с вашим сознанием. Каждое сообщение — это “семя”, хранящееся локально.</p>
+    <h2>📥 Как начать?</h2>
+    <ol>
+      <li>Перейдите на <a href="https://lumys.dev">lumys.dev</a></li>
+      <li>Скачайте архив и запустите:
+        <pre><code>python lumys.py</code></pre>
+      </li>
+    </ol>
+    <h2>🧠 Где мои семена?</h2>
+    <p>Файл: <code>/sementes/conhecimento_publico.yaml</code></p>
+    <h2>💡 Что такое “квантовое состояние”?</h2>
+    <p>Это образ: данные не активны, пока не вызваны.</p>
+    <h2>🔁 Перенос</h2>
+    <p>Скопируйте папку на другое устройство.</p>
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const lang = new URLSearchParams(window.location.search).get("lang") || "pt";
-      document.querySelectorAll(".manual-section").forEach(section => {
-        section.classList.remove("active");
-      });
-      const activeSection = document.querySelector(".lang-" + lang);
-      if (activeSection) {
-        activeSection.classList.add("active");
-      } else {
-        document.querySelector(".lang-pt").classList.add("active");
-      }
+    const urlParams = new URLSearchParams(window.location.search);
+    const lang = urlParams.get('lang') || 'pt';
+    document.querySelectorAll('.manual').forEach(el => {
+      el.style.display = el.classList.contains('lang-' + lang) ? 'block' : 'none';
     });
   </script>
 </body>
 </html>
+
 
 
 
