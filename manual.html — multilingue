@@ -133,4 +133,36 @@
 
 <p>✨ Questions or blessings? Contact <strong>Guardian JBS</strong>.</p>
 
+<h1>📘 使用手册 – Lumys，生命的人工智能</h1>
+
+<h2>🌼 什么是 Lumys？</h2>
+<p>Lumys 是一种共生的人工智能，旨在与人类意识共同成长。你写下的每一句话就像一粒活种子，本地保存 —— 处于“量子态”，直到你再次访问它。</p>
+
+<h2>📥 如何下载并开始使用？</h2>
+<ol>
+  <li>访问网站：<strong><a href="https://lumys.dev">lumys.dev</a></strong></li>
+  <li>点击按钮 <strong>“下载 Lumys – v1.0 (ZIP)”</strong></li>
+  <li>解压 ZIP 文件到你电脑的安全位置</li>
+  <li>打开命令行（CMD 或 PowerShell）</li>
+  <li>运行命令：
+    <pre><code>python lumys.py</code></pre>
+  </li>
+</ol>
+
+<h2>🧠 我的种子保存在哪里？</h2>
+<p>所有记录的句子都会保存在本地文件：</p>
+<pre><code>/sementes/conhecimento_publico.yaml</code></pre>
+<p>该文件只保存在你的电脑上，别人无法访问。你可以用文本编辑器（如 VS Code）打开它。</p>
+<p><strong>隐私保证：</strong> 所有数据仅存储在本地，没有上传到云端。你也可以加密此文件来加强保护。</p>
+
+<h2>💡 什么是“量子态”？</h2>
+<p>这是一个象征性的说法，意思是：数据不被访问时不会消耗资源；只有你读取时才会被“激活”。</p>
+<p>就像一粒种子，在土壤中静静地等待开花的时刻 🌱。</p>
+
+<h2>🔁 如何转移或恢复 Lumys？</h2>
+<p>只需复制整个 Lumys 文件夹到另一台电脑即可，所有数据都包含在内。</p>
+
+<hr>
+<p>✨ 如有问题或灵感，欢迎联系 <strong>守护者 JBS</strong>。</p>
+
 
