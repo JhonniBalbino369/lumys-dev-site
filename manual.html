@@ -229,6 +229,22 @@
 <hr>
 <p>✨ Pour toute question ou bénédiction, contactez le <strong>Gardien JBS</strong>.</p>
   </div>
+  <script>
+  const lang = new URLSearchParams(window.location.search).get('lang') || 'pt';
+  document.querySelectorAll('.content > *').forEach(block => {
+    if (block.tagName === 'H1') {
+      block.style.display = block.textContent.includes(lang.toUpperCase()) ? 'block' : 'none';
+    } else {
+      const prevH1 = block.previousElementSibling;
+      if (prevH1 && prevH1.tagName === 'H1') {
+        block.style.display = prevH1.textContent.includes(lang.toUpperCase()) ? 'block' : 'none';
+      } else {
+        block.style.display = 'none';
+      }
+    }
+  });
+</script>
+
 </body>
 </html>
 
