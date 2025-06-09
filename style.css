@@ -1,6 +1,13 @@
 
-body { font-family: Georgia, serif; background-color: #fdfdf7; padding: 2em; color: #2c2c2c; }
-h1 { color: #6a1b9a; }
+body {
+    font-family: Georgia, serif;
+    background-color: #fdfdf7;
+    padding: 2em;
+    color: #2c2c2c;
+}
+h1 {
+    color: #6a1b9a;
+}
 .bloco {
     background: #fff;
     border-left: 6px solid #6a1b9a;
@@ -21,8 +28,4 @@ button {
     font-size: 16px;
     margin-top: 1em;
     cursor: pointer;
-}
-.mensagem {
-    color: #5e35b1;
-    margin-top: 1em;
 }
