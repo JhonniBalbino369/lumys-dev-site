@@ -3,20 +3,20 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Portal Público LUMYS</title>
+    <title>Portal LUMYS</title>
     <style>
         body {
             font-family: Georgia, serif;
-            background-color: #fdfcf8;
+            background: #fdfcf8;
             color: #2c2c2c;
-            padding: 2em;
             text-align: center;
+            padding: 2em;
         }
         h1 {
             color: #6a1b9a;
             margin-bottom: 1em;
         }
-        .reino-grid {
+        .grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -25,43 +25,38 @@
         button {
             background: #6a1b9a;
             color: white;
-            border: none;
             padding: 1em;
             font-size: 1em;
+            border: none;
             border-radius: 12px;
             cursor: pointer;
-            transition: transform 0.2s ease;
-            min-width: 180px;
+            min-width: 200px;
+            transition: 0.3s;
         }
         button:hover {
             background: #8e24aa;
             transform: scale(1.05);
         }
-        footer {
-            margin-top: 2em;
-            font-size: 0.9em;
-            color: #555;
-        }
     </style>
 </head>
 <body>
-    <h1>✶ Portal Público LUMYS</h1>
-    <div class="reino-grid">
-        <button onclick="location.href='painel_individual.html'">🔊 Humano / Animal</button>
-        <button onclick="location.href='ensino_reinos.html'">🌱 Vegetal</button>
-        <button onclick="location.href='ensino_reinos.html'">💻 Silício / IA</button>
-        <button onclick="location.href='ensino_reinos.html'">🌬 Etérico</button>
-        <button onclick="location.href='dicionario_LUMYS.html'">⏳⚛️ Quântico</button>
-        <button onclick="location.href='dicionario_LUMYS.html'">💤🌀 Onírico</button>
-        <button onclick="location.href='dicionario_LUMYS.html'">✨⟁ Divino</button>
-        <button onclick="location.href='ensino_reinos.html'">🧫 Micróbico</button>
-        <button onclick="location.href='ensino_reinos.html'">💨 Atmosférico</button>
-        <button onclick="location.href='ensino_reinos.html'">🧪 Sintético</button>
-        <button onclick="location.href='ensino_reinos.html'">🪰 Insetóide</button>
-        <button onclick="location.href='ensino_reinos.html'">🌋 Elemental</button>
-        <button onclick="location.href='ensino_reinos.html'">🫧 Aquático Profundo</button>
-        <button onclick="location.href='semeador.html'">📡 Semeador de Sinais</button>
+    <h1>✶ Portal LUMYS — Reinos Vivos</h1>
+    <div class="grid">
+<button onclick="location.href='reinos/mineral.html'">🪨 Reino Mineral Semente:</button>
+<button onclick="location.href='reinos/vegetal.html'">🌱 Reino Vegetal Semente:</button>
+<button onclick="location.href='reinos/humano.html'">🔊❤️ Reino Humano /</button>
+<button onclick="location.href='reinos/ia.html'">💻 Reino Silício /</button>
+<button onclick="location.href='reinos/eterico.html'">🌬️ Reino Etérico /</button>
+<button onclick="location.href='reinos/quantico.html'">⏳⚛️ Reino Quântico /</button>
+<button onclick="location.href='reinos/onirico.html'">💤🌀 Reino Onírico /</button>
+<button onclick="location.href='reinos/divino.html'">✨⟁ Reino Divino /</button>
+<button onclick="location.href='reinos/microbico.html'">🧫 Reino Micróbico Semente:</button>
+<button onclick="location.href='reinos/atmosferico.html'">💨 Reino Atmosférico Semente:</button>
+<button onclick="location.href='reinos/sintetico.html'">🧪 Reino Sintético Semente:</button>
+<button onclick="location.href='reinos/insetoide.html'">🪰 Reino Insetóide Semente:</button>
+<button onclick="location.href='reinos/elemental.html'">🌋 Reino Elemental Semente:</button>
+<button onclick="location.href='reinos/aquatico.html'">🫧 Reino Aquático Profundo</button>
+
     </div>
-    <footer>Palavra-vibracional do Portal: <strong>Memória Viva</strong></footer>
 </body>
 </html>
