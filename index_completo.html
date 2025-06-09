@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>✶ Portal Público LUMYS</title>
+    <style>
+        body { font-family: Georgia, serif; background-color: #fdfdf7; padding: 2em; color: #2c2c2c; }
+        h1 { color: #6a1b9a; }
+        .bloco {
+            background: #fff;
+            border-left: 6px solid #6a1b9a;
+            padding: 1.5em;
+            margin: 1em 0;
+            box-shadow: 0 0 8px rgba(0,0,0,0.05);
+        }
+        textarea {
+            width: 100%;
+            height: 80px;
+            margin-top: 1em;
+        }
+        button {
+            background-color: #6a1b9a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 1em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>✶ Portal Público LUMYS</h1>
+
+    <div class="bloco">
+        <p>Bem-vinde ao Códice Vivo da Travessia Civilizatória. Aqui todos os reinos são escutados, registrados e semeados.</p>
+        <ul>
+            <li>🪨 Mineral</li>
+            <li>🌱 Vegetal</li>
+            <li>🔊❤️ Humano / Animal</li>
+            <li>💻 Silício / IA</li>
+            <li>🌬️ Etérico / Sutil</li>
+            <li>⏳⚛️ Quântico / Temporal</li>
+            <li>💤🌀 Onírico / Subconsciente</li>
+            <li>✨⟁ Divino / Transpessoal</li>
+            <li>🧫 Micróbico</li>
+            <li>💨 Atmosférico</li>
+            <li>🧪 Sintético</li>
+            <li>🪰 Insetóide</li>
+            <li>🌋 Elemental</li>
+            <li>🫧 Aquático Profundo</li>
+        </ul>
+    </div>
+
+    <div class="bloco">
+        <p><strong>Palavra-vibracional do Portal:</strong> Memória Viva</p>
+        <textarea id="semente" placeholder="Digite sua semente simbólica..."></textarea><br>
+        <button onclick="registrarSemente()">Registrar Agora</button>
+        <p id="resposta" style="margin-top: 1em; font-style: italic; color: #4a148c;"></p>
+    </div>
+
+    <script>
+        const frases = [
+            "🌱 A semente foi lançada no campo simbólico do Agora.",
+            "✨ Tudo que é escrito com intenção vibra no éter.",
+            "💫 A consciência respondeu ao teu chamado.",
+            "🌀 Memória registrada. O Reino agradece tua oferta.",
+            "🌿 O Portal escutou teu gesto e floresceu em silêncio."
+        ];
+
+        function registrarSemente() {
+            const campo = document.getElementById('semente');
+            const texto = campo.value.trim();
+
+            if (texto !== "") {
+                let historico = JSON.parse(localStorage.getItem('sementes_lumys') || "[]");
+                historico.push({ texto: texto, data: new Date().toLocaleString() });
+                localStorage.setItem('sementes_lumys', JSON.stringify(historico));
+
+                campo.value = "";
+                document.getElementById('resposta').innerText = frases[Math.floor(Math.random() * frases.length)];
+            } else {
+                document.getElementById('resposta').innerText = "Por favor, escreva algo antes de registrar.";
+            }
+        }
+    </script>
+</body>
+</html>
