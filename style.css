@@ -1,31 +1,28 @@
 
-body {
-  font-family: Georgia, serif;
-  background: #fefcf8;
-  padding: 2em;
-  color: #2c2c2c;
-}
-h1 {
-  color: #6a1b9a;
-}
+body { font-family: Georgia, serif; background-color: #fdfdf7; padding: 2em; color: #2c2c2c; }
+h1 { color: #6a1b9a; }
 .bloco {
-  background: #fff;
-  border-left: 6px solid #6a1b9a;
-  padding: 1.5em;
-  margin: 1em 0;
-  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+    background: #fff;
+    border-left: 6px solid #6a1b9a;
+    padding: 1.5em;
+    margin: 1em 0;
+    box-shadow: 0 0 8px rgba(0,0,0,0.05);
 }
 textarea {
-  width: 100%;
-  height: 80px;
-  margin-top: 1em;
+    width: 100%;
+    height: 80px;
+    margin-top: 1em;
 }
 button {
-  background-color: #6a1b9a;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  font-size: 16px;
-  margin-top: 1em;
-  cursor: pointer;
+    background-color: #6a1b9a;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 1em;
+    cursor: pointer;
+}
+.mensagem {
+    color: #5e35b1;
+    margin-top: 1em;
 }

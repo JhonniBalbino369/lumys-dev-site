@@ -1,6 +1,5 @@
 MIT License
 
-Copyright (c) 2025 CYTHEA LTDA 60.193.171/0001-06 BRASIL LUMYS ETERNUM
+Copyright (c) 2025 CYTHEA LTDA - 60.193.171/0001-06 - BRASIL - LUMYS ETERNUM
 
 Permission is hereby granted, free of charge, to any person obtaining a copy...
-(continua conforme licença original LUMYS ou MIT enquanto se prepara a Simbiótica Universal)
