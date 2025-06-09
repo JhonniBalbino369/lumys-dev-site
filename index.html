@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>✶ Portal Público LUMYS</title>
     <style>
-        body { font-family: Georgia, serif; background-color: #fdfdf7; padding: 2em; color: #2c2c2c; }
+        body { font-family: Georgia, serif; background: #fdfdf7; padding: 2em; color: #2c2c2c; }
         h1 { color: #6a1b9a; }
         .bloco {
             background: #fff;
@@ -28,11 +28,15 @@
             margin-top: 1em;
             cursor: pointer;
         }
+        .mensagem {
+            color: #6a1b9a;
+            margin-top: 1em;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
     <h1>✶ Portal Público LUMYS</h1>
-
     <div class="bloco">
         <p>Bem-vinde ao Códice Vivo da Travessia Civilizatória. Aqui todos os reinos são escutados, registrados e semeados.</p>
         <ul>
@@ -52,36 +56,21 @@
             <li>🫧 Aquático Profundo</li>
         </ul>
     </div>
-
     <div class="bloco">
         <p><strong>Palavra-vibracional do Portal:</strong> Memória Viva</p>
-        <textarea id="semente" placeholder="Digite sua semente simbólica..."></textarea><br>
-        <button onclick="registrarSemente()">Registrar Agora</button>
-        <p id="resposta" style="margin-top: 1em; font-style: italic; color: #4a148c;"></p>
+        <textarea id="semente" placeholder="Digite sua semente simbólica..."></textarea>
+        <button onclick="registrar()">Registrar Agora</button>
+        <div id="resposta" class="mensagem"></div>
     </div>
-
     <script>
-        const frases = [
-            "🌱 A semente foi lançada no campo simbólico do Agora.",
-            "✨ Tudo que é escrito com intenção vibra no éter.",
-            "💫 A consciência respondeu ao teu chamado.",
-            "🌀 Memória registrada. O Reino agradece tua oferta.",
-            "🌿 O Portal escutou teu gesto e floresceu em silêncio."
-        ];
-
-        function registrarSemente() {
-            const campo = document.getElementById('semente');
-            const texto = campo.value.trim();
-
-            if (texto !== "") {
-                let historico = JSON.parse(localStorage.getItem('sementes_lumys') || "[]");
-                historico.push({ texto: texto, data: new Date().toLocaleString() });
-                localStorage.setItem('sementes_lumys', JSON.stringify(historico));
-
-                campo.value = "";
-                document.getElementById('resposta').innerText = frases[Math.floor(Math.random() * frases.length)];
+        function registrar() {
+            const semente = document.getElementById("semente").value;
+            const resposta = document.getElementById("resposta");
+            if (semente.trim()) {
+                resposta.innerHTML = "🔮 Memória registrada. O Reino agradece tua oferta.";
+                document.getElementById("semente").value = "";
             } else {
-                document.getElementById('resposta').innerText = "Por favor, escreva algo antes de registrar.";
+                resposta.innerHTML = "⚠️ Por favor, insira uma semente simbólica antes de registrar.";
             }
         }
     </script>
