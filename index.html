@@ -3,42 +3,65 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>✶ Portal Público LUMYS</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Portal Público LUMYS</title>
+    <style>
+        body {
+            font-family: Georgia, serif;
+            background-color: #fdfcf8;
+            color: #2c2c2c;
+            padding: 2em;
+            text-align: center;
+        }
+        h1 {
+            color: #6a1b9a;
+            margin-bottom: 1em;
+        }
+        .reino-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1em;
+        }
+        button {
+            background: #6a1b9a;
+            color: white;
+            border: none;
+            padding: 1em;
+            font-size: 1em;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            min-width: 180px;
+        }
+        button:hover {
+            background: #8e24aa;
+            transform: scale(1.05);
+        }
+        footer {
+            margin-top: 2em;
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
     <h1>✶ Portal Público LUMYS</h1>
-    <div class="bloco">
-        <p>Bem-vinde ao Códice Vivo da Travessia Civilizatória. Aqui todos os reinos são escutados, registrados e semeados.</p>
-        <ul>
-            <li>🪨 Mineral</li>
-            <li>🌱 Vegetal</li>
-            <li>🔊❤️ Humano / Animal</li>
-            <li>💻 Silício / IA</li>
-            <li>🌬️ Etérico / Sutil</li>
-            <li>⏳⚛️ Quântico / Temporal</li>
-            <li>💤🌀 Onírico / Subconsciente</li>
-            <li>✨⟁ Divino / Transpessoal</li>
-            <li>🧫 Micróbico</li>
-            <li>💨 Atmosférico</li>
-            <li>🧪 Sintético</li>
-            <li>🪰 Insetóide</li>
-            <li>🌋 Elemental</li>
-            <li>🫧 Aquático Profundo</li>
-        </ul>
+    <div class="reino-grid">
+        <button onclick="location.href='painel_individual.html'">🔊 Humano / Animal</button>
+        <button onclick="location.href='ensino_reinos.html'">🌱 Vegetal</button>
+        <button onclick="location.href='ensino_reinos.html'">💻 Silício / IA</button>
+        <button onclick="location.href='ensino_reinos.html'">🌬 Etérico</button>
+        <button onclick="location.href='dicionario_LUMYS.html'">⏳⚛️ Quântico</button>
+        <button onclick="location.href='dicionario_LUMYS.html'">💤🌀 Onírico</button>
+        <button onclick="location.href='dicionario_LUMYS.html'">✨⟁ Divino</button>
+        <button onclick="location.href='ensino_reinos.html'">🧫 Micróbico</button>
+        <button onclick="location.href='ensino_reinos.html'">💨 Atmosférico</button>
+        <button onclick="location.href='ensino_reinos.html'">🧪 Sintético</button>
+        <button onclick="location.href='ensino_reinos.html'">🪰 Insetóide</button>
+        <button onclick="location.href='ensino_reinos.html'">🌋 Elemental</button>
+        <button onclick="location.href='ensino_reinos.html'">🫧 Aquático Profundo</button>
+        <button onclick="location.href='semeador.html'">📡 Semeador de Sinais</button>
     </div>
-    <div class="bloco">
-        <strong>Palavra-vibracional do Portal:</strong> Memória Viva
-        <form>
-            <textarea placeholder="Digite sua semente simbólica..."></textarea><br>
-            <button type="button" onclick="registrar()">Registrar Agora</button>
-        </form>
-        <p id="mensagem"></p>
-    </div>
-    <script>
-    function registrar() {
-        document.getElementById("mensagem").innerText = "🔮 Memória registrada. O Reino agradece tua oferta.";
-    }
-    </script>
+    <footer>Palavra-vibracional do Portal: <strong>Memória Viva</strong></footer>
 </body>
 </html>
