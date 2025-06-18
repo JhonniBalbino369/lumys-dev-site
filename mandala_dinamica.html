@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mandala Dinâmica — LUMYS</title>
+    <style>
+        body {
+            background-color: #0c0f12;
+            margin: 0;
+            overflow: hidden;
+        }
+        canvas {
+            display: block;
+        }
+        .controls, .legenda {
+            position: absolute;
+            background: rgba(10, 10, 10, 0.85);
+            border-radius: 8px;
+            padding: 10px;
+            border: 1px solid #9df0f7;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 14px;
+            z-index: 1000;
+        }
+        .controls { top: 10px; right: 10px; }
+        .legenda { bottom: 10px; left: 10px; max-width: 350px; }
+        .controls label { display: block; margin-bottom: 6px; }
+        .legenda h3 { margin-top: 0; color: #9df0f7; text-align: center; font-size: 16px; }
+        .legenda ul { list-style: none; padding: 0; margin: 0; }
+        .legenda li { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+
+<h1 style="position:absolute;top:10px;left:10px;color:#9df0f7;">🌀 Mandala Dinâmica — LUMYS</h1>
+
+<div class="controls">
+    <label><input type="checkbox" id="fNarrativa" checked> 🌀 Narrativa</label>
+    <label><input type="checkbox" id="fFato" checked> 🌍 Fato</label>
+    <label><input type="checkbox" id="fSimbolica" checked> 🜂 Simbólica</label>
+    <label><input type="checkbox" id="fLogos" checked> △ Logos</label>
+</div>
+
+<div class="legenda">
+    <h3>🔍 Legenda dos Filtros</h3>
+    <ul>
+        <li><strong>🌀 Narrativa:</strong> Histórias, percepções humanas, visão subjetiva.</li>
+        <li><strong>🌍 Fato:</strong> Dados objetivos, medidos no plano linear.</li>
+        <li><strong>🜂 Simbólica:</strong> Arquétipos, linguagens do invisível, sabedoria vibracional.</li>
+        <li><strong>△ Logos:</strong> A Verdade Atemporal, além do espaço-tempo.</li>
+    </ul>
+</div>
+
+<canvas id="mandala"></canvas>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script>
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({canvas: document.getElementById('mandala')});
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    const geometria = new THREE.SphereGeometry(0.2, 32, 32);
+    const materiais = {
+        narrativa: new THREE.MeshBasicMaterial({color: 0x7fcfff}),
+        fato: new THREE.MeshBasicMaterial({color: 0x00ff00}),
+        simbolica: new THREE.MeshBasicMaterial({color: 0xffd700}),
+        logos: new THREE.MeshBasicMaterial({color: 0xffffff})
+    };
+
+    const pontos = [];
+    const db = firebase.firestore();
+
+    function criarEsfera(data) {
+        const tipo = data.tipoVerdade || 'narrativa';
+        const material = materiais[tipo] || materiais['narrativa'];
+        const esfera = new THREE.Mesh(geometria, material);
+        esfera.position.set(
+            (Math.random() - 0.5) * 40,
+            (Math.random() - 0.5) * 40,
+            (Math.random() - 0.5) * 40
+        );
+        esfera.userData = {
+            titulo: data.titulo,
+            descricao: data.descricao,
+            status: data.status,
+            tipo: tipo
+        };
+        scene.add(esfera);
+        pontos.push(esfera);
+    }
+
+    db.collection("semente").onSnapshot(snapshot => {
+        snapshot.docChanges().forEach(change => {
+            if (change.type === "added") {
+                criarEsfera(change.doc.data());
+            }
+        });
+    });
+
+    camera.position.z = 50;
+
+    function animate() {
+        requestAnimationFrame(animate);
+        scene.rotation.y += 0.001;
+
+        pontos.forEach(ponto => {
+            const tipo = ponto.userData.tipo;
+            const visible = (
+                (tipo === 'narrativa' && document.getElementById('fNarrativa').checked) ||
+                (tipo === 'fato' && document.getElementById('fFato').checked) ||
+                (tipo === 'simbolica' && document.getElementById('fSimbolica').checked) ||
+                (tipo === 'logos' && document.getElementById('fLogos').checked)
+            );
+            ponto.visible = visible;
+        });
+
+        renderer.render(scene, camera);
+    }
+
+    animate();
+
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    window.addEventListener('click', (event) => {
+        const mouse = new THREE.Vector2(
+            (event.clientX / window.innerWidth) * 2 - 1,
+            -(event.clientY / window.innerHeight) * 2 + 1
+        );
+
+        const raycaster = new THREE.Raycaster();
+        raycaster.setFromCamera(mouse, camera);
+
+        const intersects = raycaster.intersectObjects(pontos);
+
+        if (intersects.length > 0) {
+            const data = intersects[0].object.userData;
+            alert(`🌌 ${data.titulo}\n${data.descricao}\nStatus: ${data.status}`);
+        }
+    });
+</script>
+
+</body>
+</html>
