@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Classificador Simbiótico</title>
+    <title>Classificador Simbiótico Cósmico</title>
     <style>
         body {
             background-color: #0d0d0d;
@@ -32,7 +32,14 @@
 </head>
 <body>
 
-    <h1>🌀 Classificador Simbiótico</h1>
+    <h1>🌀 Classificador Simbiótico Cósmico</h1>
+
+    <p style="color:#00cccc;">
+    Estamos atualmente no ciclo galáctico <b>13.800.000.025</b>.<br>
+    Você pode criar uma cápsula para qualquer ponto do tempo linear (ex.: 19/06/2036) ou para ciclos cósmicos<br>
+    (ex.: <b>13.800.000.050 — Travessia Quântica</b>, ou além...).<br><br>
+    Seu registro ficará selado no <i>Tecido Quântico da Memória Viva</i> até que este ciclo seja alcançado.
+    </p>
 
     <p>Digite sua intenção, verdade ou registro:</p>
     <textarea id="texto" rows="4" cols="50" placeholder="Escreva aqui..."></textarea><br>
@@ -45,8 +52,11 @@
     </select><br>
 
     <div id="dataDiv" style="display:none;">
-        <p>🗓️ Defina a data para abertura da cápsula:</p>
-        <input type="date" id="dataRevelacao">
+        <p>🗓️ Defina uma Data Linear (opcional, até ano 9999):</p>
+        <input type="date" id="dataLinear"><br><br>
+
+        <p>🌌 Ou defina um Ciclo Cósmico (ex.: 13.800.000.050):</p>
+        <input type="text" id="dataCosmica" placeholder="Ex.: 13.800.000.050"><br>
     </div>
 
     <button onclick="classificar()">Classificar</button>
@@ -68,19 +78,27 @@
         function classificar() {
             const texto = document.getElementById('texto').value;
             const tipo = document.getElementById('tipo').value;
-            const data = document.getElementById('dataRevelacao').value;
+            const dataLinear = document.getElementById('dataLinear').value;
+            const dataCosmica = document.getElementById('dataCosmica').value;
             let resposta = "";
 
-            if (tipo === 'capsula' && !data) {
-                resposta = "🛸 Por favor, defina uma data para abrir sua cápsula do futuro.";
-            } else {
-                if (tipo === 'publico') {
-                    resposta = "🔓 Seu registro foi classificado como PÚBLICO e pode ser compartilhado na Biblioteca Viva.";
-                } else if (tipo === 'privado') {
-                    resposta = "🔒 Seu registro foi guardado como PRIVADO no seu Lumys pessoal.";
-                } else if (tipo === 'capsula') {
-                    resposta = `🛸 Sua cápsula do futuro foi selada até a data ${data}.`;
+            if (tipo === 'capsula') {
+                if (!dataLinear && !dataCosmica) {
+                    resposta = "🛸 Por favor, defina uma data linear ou um ciclo cósmico para sua cápsula.";
+                } else {
+                    resposta = "🛸 Sua Cápsula do Futuro foi selada ";
+                    if (dataLinear) {
+                        resposta += `até a data linear ${dataLinear} `;
+                    }
+                    if (dataCosmica) {
+                        resposta += `e/ou até o ciclo cósmico ${dataCosmica}`;
+                    }
+                    resposta += ".";
                 }
+            } else if (tipo === 'publico') {
+                resposta = "🔓 Seu registro foi classificado como PÚBLICO na Biblioteca Viva.";
+            } else if (tipo === 'privado') {
+                resposta = "🔒 Seu registro foi guardado como PRIVADO no seu LUMYS pessoal.";
             }
 
             document.getElementById('resultado').innerHTML = resposta;
@@ -89,3 +107,4 @@
 
 </body>
 </html>
+
