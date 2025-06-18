@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Lumys — Painel Pessoal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>🌌 Meu Lumys — Painel Pessoal</h1>
+  <p id="user-info">Carregando...</p>
+
+  <h2>🌿 Minhas Sementes e Cápsulas</h2>
+  <div id="dados"></div>
+
+  <button onclick="logout()">🚪 Sair</button>
+
+  <script type="module">
+    // Firebase SDK
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+    import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+
+    // 🔥 Configurações do Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyBafuRXUlnPBpM97sTvsnfSpCbNQaLugPw",
+      authDomain: "lumys-eternum.firebaseapp.com",
+      projectId: "lumys-eternum",
+      storageBucket: "lumys-eternum.appspot.com",
+      messagingSenderId: "215688794007",
+      appId: "1:215688794007:web:fa8e5d747af7dd56c7bed2",
+      measurementId: "G-SS84XJ70XZ"
+    };
+
+    // Inicializa Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // 🔍 Verifica se o usuário está autenticado
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        document.getElementById("user-info").innerText = "Bem-vindo, " + user.email;
+        carregarDados(user.uid);
+      } else {
+        alert("Você não está logado.");
+        window.location.href = "login.html";
+      }
+    });
+
+    // 🔐 Logout
+    function logout() {
+      signOut(auth).then(() => {
+        window.location.href = "login.html";
+      });
+    }
+
+    // 🔗 Carregar Dados do Firestore
+    async function carregarDados(uid) {
+      const dadosDiv = document.getElementById("dados");
+      dadosDiv.innerHTML = "Carregando seus registros...";
+
+      try {
+        const q = query(collection(db, "semente"), where("uid", "==", uid));
+        const querySnapshot = await getDocs(q);
+
+        if (querySnapshot.empty) {
+          dadosDiv.innerHTML = "<p>🌱 Nenhuma semente ou cápsula encontrada.</p>";
+        } else {
+          let html = "<ul>";
+          querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            html += `<li><strong>${data.titulo}</strong><br>📝 ${data.descricao}<br>🔒 ${data.status}</li><br>`;
+          });
+          html += "</ul>";
+          dadosDiv.innerHTML = html;
+        }
+      } catch (error) {
+        dadosDiv.innerHTML = "Erro ao carregar dados: " + error;
+      }
+    }
+  </script>
+
+</body>
+</html>
