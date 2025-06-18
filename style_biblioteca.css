@@ -1,0 +1,52 @@
+body {
+    background-color: #0c0c0c;
+    color: #aefdfd;
+    font-family: 'Georgia', serif;
+    text-align: center;
+    padding: 2rem;
+}
+
+h1 {
+    color: #80eaff;
+}
+
+form {
+    margin: 1rem auto;
+    padding: 1rem;
+    background-color: #1a1a1a;
+    border-radius: 12px;
+    width: 60%;
+}
+
+input, select, button {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: none;
+}
+
+button {
+    background-color: #00c3ff;
+    color: white;
+    cursor: pointer;
+}
+
+.registro {
+    background-color: #1a1a1a;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid #00c3ff;
+}
+
+.registro.publico {
+    border-color: #00c3ff;
+}
+
+.registro.privado {
+    border-color: #ffb347;
+}
+
+.registro.capsula {
+    border-color: #b266ff;
+}
