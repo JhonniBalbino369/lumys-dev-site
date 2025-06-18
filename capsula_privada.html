@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cofres Temporais — LUMYS</title>
+  <style>
+    body {
+      background-color: #0c0f12;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #9df0f7;
+      text-align: center;
+    }
+
+    .entry {
+      background-color: rgba(20, 20, 20, 0.9);
+      border: 1px solid #9df0f7;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+
+    .entry h3 {
+      margin-top: 0;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      border: none;
+      background-color: #1a1d22;
+      color: #e0e0e0;
+    }
+
+    .button {
+      background-color: #9df0f7;
+      color: #0c0f12;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .button:hover {
+      background-color: #7cc9d6;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>⏳ Meus Cofres Temporais — LUMYS</h1>
+
+  <div>
+    <input type="text" id="titulo" placeholder="Título da Semente">
+    <textarea id="descricao" placeholder="Descrição"></textarea>
+    <select id="tipoVerdade">
+      <option value="narrativa">🌀 Narrativa</option>
+      <option value="fato">🌍 Fato</option>
+      <option value="simbolica">🜂 Simbólica</option>
+      <option value="logos">△ Logos</option>
+    </select>
+    <button class="button" onclick="salvarCofre()">💾 Salvar Cofre</button>
+  </div>
+
+  <div id="conteudo"></div>
+
+  <button class="button" onclick="logout()">🚪 Sair</button>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+    import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+    import { getFirestore, collection, addDoc, query, where, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBafuRXUlnPBpM97sTvsnfSpCbNQaLugPw",
+      authDomain: "lumys-eternum.firebaseapp.com",
+      projectId: "lumys-eternum",
+      storageBucket: "lumys-eternum.appspot.com",
+      messagingSenderId: "215688794007",
+      appId: "1:215688794007:web:fa8e5d747af7dd56c7bed2",
+      measurementId: "G-SS84XJ70XZ"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const conteudo = document.getElementById("conteudo");
+
+    function logout() {
+      signOut(auth).then(() => {
+        window.location.href = "index.html";
+      });
+    }
+
+    function salvarCofre() {
+      const titulo = document.getElementById("titulo").value;
+      const descricao = document.getElementById("descricao").value;
+      const tipoVerdade = document.getElementById("tipoVerdade").value;
+
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          await addDoc(collection(db, "semente"), {
+            uid: user.uid,
+            titulo: titulo,
+            descricao: descricao,
+            tipoVerdade: tipoVerdade,
+            status: "cofre",
+            timestamp: serverTimestamp()
+          });
+          alert("Cofre salvo!");
+          window.location.reload();
+        }
+      });
+    }
+
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const q = query(collection(db, "semente"), where("uid", "==", user.uid), where("status", "==", "cofre"));
+        const querySnapshot = await getDocs(q);
+
+        if (querySnapshot.empty) {
+          conteudo.innerHTML = '<p>🌌 Nenhum cofre criado ainda.</p>';
+        } else {
+          querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            conteudo.innerHTML += `
+              <div class="entry">
+                <h3>🌟 ${data.titulo}</h3>
+                <p>${data.descricao}</p>
+                <p><strong>Tipo:</strong> ${data.tipoVerdade}</p>
+                <p><strong>Status:</strong> ${data.status}</p>
+              </div>
+            `;
+          });
+        }
+      } else {
+        window.location.href = "login.html";
+      }
+    });
+  </script>
+
+</body>
+</html>
