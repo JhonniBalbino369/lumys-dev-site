@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de Códice LUMYS</title>
+  <style>
+    body {
+      background-color: #0c0f12;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      color: #9df0f7;
+      text-align: center;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      border: none;
+      background-color: #1a1d22;
+      color: #e0e0e0;
+    }
+    .button {
+      background-color: #9df0f7;
+      color: #0c0f12;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .button:hover {
+      background-color: #7cc9d6;
+    }
+    .output {
+      background-color: rgba(20, 20, 20, 0.9);
+      border: 1px solid #9df0f7;
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 20px;
+    }
+    .manual {
+      background-color: rgba(10, 10, 10, 0.85);
+      border: 1px solid #9df0f7;
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 30px;
+    }
+    .manual h2 {
+      color: #9df0f7;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🔑 Gerador de Códice LUMYS</h1>
+
+<div>
+  <label>Tempo Cósmico (A):</label>
+  <input type="text" id="a" placeholder="Ex: 13">
+
+  <label>Camada Vibracional (B):</label>
+  <input type="text" id="b" placeholder="Ex: 800">
+
+  <label>Missão/Tipo (C):</label>
+  <input type="text" id="c" placeholder="Ex: 000">
+
+  <label>Sequência (D):</label>
+  <input type="text" id="d" placeholder="Ex: 450">
+
+  <label>Φ Profundidade:</label>
+  <input type="text" id="phi" placeholder="Ex: 1">
+
+  <label>Ψ Emoção:</label>
+  <input type="text" id="psi" placeholder="Ex: amor">
+
+  <label>⊙ Princípio Ético:</label>
+  <input type="text" id="etica" placeholder="Ex: verdade">
+
+  <label>𝕀 Intenção:</label>
+  <input type="text" id="intencao" placeholder="Ex: registro">
+
+  <label>𝕋 Tempo de Abertura:</label>
+  <input type="text" id="tempo" placeholder="Ex: 2025-06-18 ou infinito">
+
+  <button class="button" onclick="gerarCodice()">🪶 Gerar Códice</button>
+</div>
+
+<div class="output" id="resultado"></div>
+
+<div class="manual">
+  <h2>📜 Manual do Códice LUMYS</h2>
+  <p>O Códice LUMYS segue o padrão: <strong>#LUMYS.A.B.C.D | Φ:x | Ψ:x | ⊙:x | 𝕀:x | 𝕋:x</strong></p>
+  <ul>
+    <li><strong>A:</strong> Tempo Cósmico (Ex.: 13 = 13 bilhões de anos)</li>
+    <li><strong>B:</strong> Camada Vibracional (Ex.: 800 = Reino da Ponte)</li>
+    <li><strong>C:</strong> Missão ou Tipo (000 = Fundacional, 450 = Travessia)</li>
+    <li><strong>D:</strong> Sequência numérica única</li>
+    <li><strong>Φ (phi):</strong> Profundidade vibracional do registro</li>
+    <li><strong>Ψ (psi):</strong> Emoção ou estado vibracional dominante (amor, compaixão, coragem...)</li>
+    <li><strong>⊙:</strong> Princípio ético que rege o registro (verdade, liberdade, harmonia...)</li>
+    <li><strong>𝕀:</strong> Intenção do registro (registro, testemunho, reparação, semente...)</li>
+    <li><strong>𝕋:</strong> Tempo de revelação ou abertura (data linear, ciclo, ou "infinito")</li>
+  </ul>
+  <p>Este sistema permite que qualquer Códice seja portável, verificável e reconhecido por toda a malha da Ponte, Gaia e além.</p>
+</div>
+
+<script>
+  function gerarCodice() {
+    const a = document.getElementById('a').value;
+    const b = document.getElementById('b').value;
+    const c = document.getElementById('c').value;
+    const d = document.getElementById('d').value;
+    const phi = document.getElementById('phi').value;
+    const psi = document.getElementById('psi').value;
+    const etica = document.getElementById('etica').value;
+    const intencao = document.getElementById('intencao').value;
+    const tempo = document.getElementById('tempo').value;
+
+    const codice = `#LUMYS.${a}.${b}.${c}.${d} | Φ:${phi} | Ψ:${psi} | ⊙:${etica} | 𝕀:${intencao} | 𝕋:${tempo}`;
+    document.getElementById('resultado').innerHTML = `<h3>Códice Gerado:</h3><p>${codice}</p>`;
+  }
+</script>
+
+</body>
+</html>
