@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mandala Dinâmica — LUMYS</title>
+  <title>Mandala Estelar — LUMYS</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js';
@@ -31,7 +31,7 @@
       querySnapshot.forEach((doc) => {
         const item = doc.data();
         labels.push(item.titulo || "Códice");
-        data.push(Math.floor(Math.random() * 20) + 5);
+        data.push(Math.random() * 50 + 10);
         const codice = `#LUMYS.${item.tempo || '13'}.${item.vibracao || '800'}.${item.tipo || '000'}.${item.sequencia || '450'} | Φ:${item.phi || '1'} | Ψ:${item.psi || 'amor'} | ⊙:${item.etica || 'verdade'} | 𝕀:${item.intencao || 'registro'} | 𝕋:${item.tempo_abertura || 'infinito'}`;
         codices.push(codice);
       });
@@ -42,12 +42,12 @@
     function desenharMandala(labels, data, codices) {
       const ctx = document.getElementById('mandalaChart').getContext('2d');
       const config = {
-        type: 'polarArea',
+        type: 'scatter',
         data: {
           labels: labels,
           datasets: [{
-            label: 'Códices Lumys',
-            data: data,
+            label: 'Códices Estelares',
+            data: labels.map(() => ({x: Math.random() * 100, y: Math.random() * 100})),
             backgroundColor: labels.map(() => '#' + Math.floor(Math.random()*16777215).toString(16))
           }]
         },
@@ -66,6 +66,19 @@
                 <p><a href="cartao_codice_lumys.html" target="_blank">🎴 Ver Cartão do Códice</a></p>
                 <p><a href="leitor_codice_lumys.html" target="_blank">🔍 Ler Códice</a></p>
               `;
+            }
+          },
+          scales: {
+            x: {
+              type: 'linear',
+              position: 'bottom',
+              grid: { color: '#333' },
+              ticks: { color: '#9df0f7' }
+            },
+            y: {
+              type: 'linear',
+              grid: { color: '#333' },
+              ticks: { color: '#9df0f7' }
             }
           }
         }
@@ -89,7 +102,7 @@
     }
     canvas {
       background-color: rgba(20, 20, 20, 0.95);
-      border-radius: 50%;
+      border-radius: 16px;
       margin: 20px auto;
       display: block;
     }
@@ -104,11 +117,12 @@
 </head>
 <body>
 
-<h1>🌌 Mandala Dinâmica — Códices Vivos</h1>
-<canvas id="mandalaChart" width="500" height="500"></canvas>
+<h1>✨🌌 Mandala Estelar — Códices Vivos</h1>
+<canvas id="mandalaChart" width="600" height="600"></canvas>
 
-<div class="info" id="info">Clique em um ponto da Mandala para ver o Códice.</div>
+<div class="info" id="info">Clique em uma estrela da Mandala para ver o Códice.</div>
 
 </body>
 </html>
+
 
