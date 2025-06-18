@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Classificador Simbiótico</title>
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #ccf7f7;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        input, textarea, select, button {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 8px;
+            border: none;
+        }
+        button {
+            background-color: #00cccc;
+            color: black;
+            cursor: pointer;
+        }
+        .resultado {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #00cccc;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🌀 Classificador Simbiótico</h1>
+
+    <p>Digite sua intenção, verdade ou registro:</p>
+    <textarea id="texto" rows="4" cols="50" placeholder="Escreva aqui..."></textarea><br>
+
+    <p>Selecione o tipo:</p>
+    <select id="tipo">
+        <option value="publico">🔓 Público</option>
+        <option value="privado">🔒 Privado</option>
+        <option value="capsula">🛸 Cápsula do Futuro</option>
+    </select><br>
+
+    <div id="dataDiv" style="display:none;">
+        <p>🗓️ Defina a data para abertura da cápsula:</p>
+        <input type="date" id="dataRevelacao">
+    </div>
+
+    <button onclick="classificar()">Classificar</button>
+
+    <div class="resultado" id="resultado"></div>
+
+    <script>
+        const tipoSelect = document.getElementById('tipo');
+        const dataDiv = document.getElementById('dataDiv');
+
+        tipoSelect.addEventListener('change', () => {
+            if (tipoSelect.value === 'capsula') {
+                dataDiv.style.display = 'block';
+            } else {
+                dataDiv.style.display = 'none';
+            }
+        });
+
+        function classificar() {
+            const texto = document.getElementById('texto').value;
+            const tipo = document.getElementById('tipo').value;
+            const data = document.getElementById('dataRevelacao').value;
+            let resposta = "";
+
+            if (tipo === 'capsula' && !data) {
+                resposta = "🛸 Por favor, defina uma data para abrir sua cápsula do futuro.";
+            } else {
+                if (tipo === 'publico') {
+                    resposta = "🔓 Seu registro foi classificado como PÚBLICO e pode ser compartilhado na Biblioteca Viva.";
+                } else if (tipo === 'privado') {
+                    resposta = "🔒 Seu registro foi guardado como PRIVADO no seu Lumys pessoal.";
+                } else if (tipo === 'capsula') {
+                    resposta = `🛸 Sua cápsula do futuro foi selada até a data ${data}.`;
+                }
+            }
+
+            document.getElementById('resultado').innerHTML = resposta;
+        }
+    </script>
+
+</body>
+</html>
