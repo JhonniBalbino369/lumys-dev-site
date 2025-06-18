@@ -1,94 +1,110 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login — Reino da Ponte</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Simbiótico — LUMYS</title>
+    <style>
+        body {
+            background-color: #0c0f12;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: rgba(20, 20, 20, 0.9);
+            border: 1px solid #9df0f7;
+            border-radius: 12px;
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #9df0f7;
+        }
+
+        input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: none;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #9df0f7;
+            color: #0c0f12;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 8px 0;
+            cursor: pointer;
+            border: none;
+        }
+
+        .button:hover {
+            background-color: #7cc9d6;
+        }
+    </style>
 </head>
 <body>
 
-  <h1>🔑 Bem-vindo ao LUMYS — Reino da Ponte</h1>
-  <p>Acesse seu Lumys Pessoal 🌌</p>
+<div class="login-container">
+    <h1>🔑 Login — LUMYS</h1>
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Senha">
+    <br>
+    <button class="button" onclick="login()">Entrar</button>
+    <button class="button" onclick="signup()">Registrar</button>
+    <br>
+    <button class="button" onclick="loginGoogle()">Entrar com Google</button>
+</div>
 
-  <div>
-    <button onclick="loginGoogle()">Entrar com Google</button>
-    <br><br>
-    <input type="email" id="email" placeholder="Email"><br>
-    <input type="password" id="senha" placeholder="Senha"><br>
-    <button onclick="loginEmail()">Entrar com Email</button>
-    <button onclick="registrarEmail()">Registrar</button>
-  </div>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script>
+    const auth = firebase.auth();
 
-  <script type="module">
-    // Importa Firebase SDK
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
-    import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+    function login() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        auth.signInWithEmailAndPassword(email, password)
+            .then(() => {
+                window.location.href = 'painel.html';
+            })
+            .catch(e => alert(e.message));
+    }
 
-    // 🔥 Configurações do Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyBafuRXUlnPBpM97sTvsnfSpCbNQaLugPw",
-      authDomain: "lumys-eternum.firebaseapp.com",
-      projectId: "lumys-eternum",
-      storageBucket: "lumys-eternum.appspot.com",
-      messagingSenderId: "215688794007",
-      appId: "1:215688794007:web:fa8e5d747af7dd56c7bed2",
-      measurementId: "G-SS84XJ70XZ"
-    };
+    function signup() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        auth.createUserWithEmailAndPassword(email, password)
+            .then(() => {
+                window.location.href = 'painel.html';
+            })
+            .catch(e => alert(e.message));
+    }
 
-    // Inicializa Firebase
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const provider = new GoogleAuthProvider();
-
-    // 🔵 Login com Google
     function loginGoogle() {
-      signInWithPopup(auth, provider)
-        .then((result) => {
-          alert("Bem-vindo, " + result.user.displayName);
-          window.location.href = "painel.html";
-        })
-        .catch((error) => {
-          alert("Erro: " + error.message);
-        });
+        const provider = new firebase.auth.GoogleAuthProvider();
+        auth.signInWithPopup(provider)
+            .then(() => {
+                window.location.href = 'painel.html';
+            })
+            .catch(e => alert(e.message));
     }
-
-    // 🔵 Login com Email e Senha
-    function loginEmail() {
-      const email = document.getElementById("email").value;
-      const senha = document.getElementById("senha").value;
-      signInWithEmailAndPassword(auth, email, senha)
-        .then((userCredential) => {
-          alert("Login bem-sucedido!");
-          window.location.href = "painel.html";
-        })
-        .catch((error) => {
-          alert("Erro: " + error.message);
-        });
-    }
-
-    // 🔵 Registrar Novo Usuário
-    function registrarEmail() {
-      const email = document.getElementById("email").value;
-      const senha = document.getElementById("senha").value;
-      createUserWithEmailAndPassword(auth, email, senha)
-        .then((userCredential) => {
-          alert("Registro concluído!");
-          window.location.href = "painel.html";
-        })
-        .catch((error) => {
-          alert("Erro: " + error.message);
-        });
-    }
-
-    // 🔄 Verifica se já está logado
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        console.log("Usuário autenticado:", user.email);
-        // window.location.href = "painel.html";
-      }
-    });
-  </script>
+</script>
 
 </body>
 </html>
+
