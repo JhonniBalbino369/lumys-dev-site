@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌀 Mandala do Véu — LUMYS</title>
+    <style>
+        body {
+            background-color: #0c0f12;
+            color: #e0e0e0;
+            margin: 0;
+            overflow: hidden;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="position: absolute; top: 10px; left: 10px; color: #9df0f7;">🌀 Mandala do Véu — LUMYS</h1>
+    <canvas id="mandala"></canvas>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({canvas: document.getElementById('mandala')});
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        const geometria = new THREE.SphereGeometry(0.2, 32, 32);
+        const materiais = {
+            narrativa: new THREE.MeshBasicMaterial({color: 0x7fcfff}),
+            fato: new THREE.MeshBasicMaterial({color: 0x00ff00}),
+            simbolica: new THREE.MeshBasicMaterial({color: 0xffd700}),
+            logos: new THREE.MeshBasicMaterial({color: 0xffffff})
+        };
+
+        const pontos = [];
+        const tipos = ['narrativa', 'fato', 'simbolica', 'logos'];
+
+        for (let i = 0; i < 50; i++) {
+            const tipo = tipos[Math.floor(Math.random() * tipos.length)];
+            const esfera = new THREE.Mesh(geometria, materiais[tipo]);
+            esfera.position.set(
+                (Math.random() - 0.5) * 20,
+                (Math.random() - 0.5) * 20,
+                (Math.random() - 0.5) * 20
+            );
+            scene.add(esfera);
+            pontos.push(esfera);
+        }
+
+        camera.position.z = 30;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            scene.rotation.y += 0.001;
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
