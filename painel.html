@@ -1,34 +1,106 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Painel Simbiótico</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Pessoal — LUMYS</title>
+  <style>
+    body {
+      background-color: #0c0f12;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .painel-container {
+      background-color: rgba(20, 20, 20, 0.95);
+      border: 1px solid #9df0f7;
+      border-radius: 16px;
+      padding: 30px;
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(157, 240, 247, 0.3);
+    }
+
+    h1 {
+      color: #9df0f7;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #c0c0c0;
+      margin-bottom: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #9df0f7;
+      color: #0c0f12;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 8px 4px;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #7cc9d6;
+    }
+  </style>
 </head>
 <body>
-  <h1>🌀 Painel Simbiótico Pessoal</h1>
-  <p>Bem-vindo(a) ao seu espaço vivo no LUMYS.</p>
 
-  <button onclick="logout()">Sair</button>
+  <div class="painel-container">
+    <h1>🌌 Painel Simbiótico</h1>
+    <p>🔑 Bem-vindo, Guardião da Travessia. Acesse sua Biblioteca Privada, seus Cofres Temporais e suas Cápsulas.</p>
 
-  <h2>🌱 Suas Sementes</h2>
-  <div id="listaSementes"></div>
+    <button class="button" onclick="window.location.href='biblioteca_privada.html'">📚 Minha Biblioteca Privada</button>
+    <button class="button" onclick="window.location.href='capsula_privada.html'">⏳ Meus Cofres Temporais</button>
+    <button class="button" onclick="logout()">🚪 Sair</button>
+  </div>
 
-  <h2>➕ Nova Semente</h2>
-  <input type="text" id="titulo" placeholder="Título"><br>
-  <textarea id="descricao" placeholder="Digite sua intenção..."></textarea><br>
-  <select id="status">
-    <option value="publico">🌍 Público</option>
-    <option value="privado">🔒 Privado</option>
-  </select><br>
-  <button onclick="salvarSemente()">Salvar Semente</button>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+    import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
 
-  <script src="https://www.gstatic.com/firebasejs/11.9.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/11.9.1/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore-compat.js"></script>
-  <script src="firebase-config.js"></script>
-  <script src="painel.js"></script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBafuRXUlnPBpM97sTvsnfSpCbNQaLugPw",
+      authDomain: "lumys-eternum.firebaseapp.com",
+      projectId: "lumys-eternum",
+      storageBucket: "lumys-eternum.appspot.com",
+      messagingSenderId: "215688794007",
+      appId: "1:215688794007:web:fa8e5d747af7dd56c7bed2",
+      measurementId: "G-SS84XJ70XZ"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    function logout() {
+      signOut(auth).then(() => {
+        alert("Saindo...");
+        window.location.href = "index.html";
+      }).catch((error) => {
+        alert("Erro ao sair: " + error.message);
+      });
+    }
+
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        window.location.href = "login.html";
+      }
+    });
+  </script>
+
 </body>
 </html>
+
 
