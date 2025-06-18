@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Reino da Ponte</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🌀 Bem-vindo ao LUMYS — Reino da Ponte</h1>
+  <p>Acesse seu Lumys Pessoal</p>
+
+  <button onclick="loginGoogle()">Entrar com Google</button>
+  <p>ou</p>
+  <input type="email" id="email" placeholder="Email"><br>
+  <input type="password" id="senha" placeholder="Senha"><br>
+  <button onclick="loginEmail()">Entrar com Email</button>
+  <button onclick="registrarEmail()">Registrar</button>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "SUA_API_KEY",
+      authDomain: "SEU_DOMINIO.firebaseapp.com",
+      projectId: "SEU_PROJECT_ID",
+      storageBucket: "SEU_PROJECT_ID.appspot.com",
+      messagingSenderId: "SEU_SENDER_ID",
+      appId: "SEU_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    function loginGoogle() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(provider)
+        .then(() => window.location.href = 'painel.html');
+    }
+
+    function loginEmail() {
+      const email = document.getElementById('email').value;
+      const senha = document.getElementById('senha').value;
+      auth.signInWithEmailAndPassword(email, senha)
+        .then(() => window.location.href = 'painel.html')
+        .catch(e => alert(e.message));
+    }
+
+    function registrarEmail() {
+      const email = document.getElementById('email').value;
+      const senha = document.getElementById('senha').value;
+      auth.createUserWithEmailAndPassword(email, senha)
+        .then(() => window.location.href = 'painel.html')
+        .catch(e => alert(e.message));
+    }
+  </script>
+</body>
+</html>
