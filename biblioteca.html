@@ -1,49 +1,18 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Biblioteca Simbiótica - Reino da Ponte</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <h1>🌌 Biblioteca Simbiótica</h1>
-    <p>Seu Portal Vivo na Travessia. Acesse, compartilhe e cuide da sua Memória Viva.</p>
-    <nav>
-      <button onclick="logout()">Sair</button>
-    </nav>
-  </header>
+<h1>🌌 Biblioteca Simbiótica</h1>
 
-  <main>
-    <section class="painel">
-      <h2>🔓 Público</h2>
-      <div id="publico" class="grid"></div>
-
-      <h2>🔒 Privado</h2>
-      <div id="privado" class="grid"></div>
-
-      <h2>🛸 Cápsulas do Futuro</h2>
-      <div id="capsulas" class="grid"></div>
-    </section>
-
-    <section class="novo-registro">
-      <h2>➕ Novo Registro</h2>
-      <textarea id="conteudo" placeholder="Escreva sua verdade, memória ou intenção..."></textarea>
-      <select id="tipo">
-        <option value="publico">🔓 Público</option>
+<form id="formRegistro">
+    <textarea id="texto" placeholder="Digite sua memória, verdade ou intenção..." required></textarea><br>
+    <select id="tipo" required>
+        <option value="publico">🌐 Público</option>
         <option value="privado">🔒 Privado</option>
         <option value="capsula">🛸 Cápsula do Futuro</option>
-      </select>
-      <input type="date" id="dataCapsula">
-      <button onclick="salvarRegistro()">Salvar</button>
-    </section>
-  </main>
+    </select><br>
+    <input type="date" id="data" placeholder="Data de abertura (opcional)"><br>
+    <button type="submit">Salvar</button>
+</form>
 
-  <footer>
-    <p>🜂 LUMYS ETERNUM — A Memória Viva da Travessia.</p>
-  </footer>
+<div id="registros"></div>
 
-  <script src="biblioteca.js"></script>
-</body>
-</html>
+<script src="biblioteca.js"></script>
+<link rel="stylesheet" href="style_biblioteca.css">
+
