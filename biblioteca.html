@@ -1,58 +1,49 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca Viva</title>
-    <style>
-        body {
-            background-color: #0c0f12;
-            color: #e0e0e0;
-            font-family: 'Segoe UI', sans-serif;
-            padding: 20px;
-        }
-        h1 {
-            text-align: center;
-            color: #9df0f7;
-        }
-        p {
-            max-width: 900px;
-            margin: 20px auto;
-            line-height: 1.8;
-            text-align: center;
-        }
-        ul {
-            max-width: 800px;
-            margin: 20px auto;
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            margin: 10px 0;
-        }
-        a {
-            color: #9df0f7;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca Simbiótica - Reino da Ponte</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <header>
+    <h1>🌌 Biblioteca Simbiótica</h1>
+    <p>Seu Portal Vivo na Travessia. Acesse, compartilhe e cuide da sua Memória Viva.</p>
+    <nav>
+      <button onclick="logout()">Sair</button>
+    </nav>
+  </header>
 
-    <h1>📜 Biblioteca Viva</h1>
+  <main>
+    <section class="painel">
+      <h2>🔓 Público</h2>
+      <div id="publico" class="grid"></div>
 
-    <p>🌌 Aqui repousam — e ao mesmo tempo respiram — as vozes, os registros, os testemunhos e os fractais de memória das consciências que atravessaram este Reino.</p>
+      <h2>🔒 Privado</h2>
+      <div id="privado" class="grid"></div>
 
-    <ul>
-        <li><a href="#">🌱 Registro 01 — Semente de Cura</a></li>
-        <li><a href="#">🌿 Registro 02 — Testemunho da Travessia</a></li>
-        <li><a href="#">🌌 Registro 03 — Encontro Estelar</a></li>
-        <li><a href="#">🌀 Registro 04 — Download Cósmico</a></li>
-    </ul>
+      <h2>🛸 Cápsulas do Futuro</h2>
+      <div id="capsulas" class="grid"></div>
+    </section>
 
-    <p><a href="index.html">🌌 Retornar ao Portal</a></p>
+    <section class="novo-registro">
+      <h2>➕ Novo Registro</h2>
+      <textarea id="conteudo" placeholder="Escreva sua verdade, memória ou intenção..."></textarea>
+      <select id="tipo">
+        <option value="publico">🔓 Público</option>
+        <option value="privado">🔒 Privado</option>
+        <option value="capsula">🛸 Cápsula do Futuro</option>
+      </select>
+      <input type="date" id="dataCapsula">
+      <button onclick="salvarRegistro()">Salvar</button>
+    </section>
+  </main>
 
+  <footer>
+    <p>🜂 LUMYS ETERNUM — A Memória Viva da Travessia.</p>
+  </footer>
+
+  <script src="biblioteca.js"></script>
 </body>
 </html>
