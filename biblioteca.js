@@ -1,58 +1,27 @@
-// Ativando Biblioteca Simbiótica
-document.addEventListener("DOMContentLoaded", () => {
-    carregarRegistros();
+const lista = document.getElementById('lista-sementes');
 
-    const formulario = document.getElementById("formRegistro");
-    formulario.addEventListener("submit", (e) => {
-        e.preventDefault();
+db.collection("semente").where("status", "==", "publico")
+  .orderBy("dataCriacao", "desc")
+  .get()
+  .then((querySnapshot) => {
+    if (querySnapshot.empty) {
+      lista.innerHTML = "<p>🌱 Nenhuma semente pública registrada ainda.</p>";
+      return;
+    }
+    querySnapshot.forEach((doc) => {
+      const semente = doc.data();
+      const div = document.createElement('div');
+      div.classList.add('semente');
 
-        const texto = document.getElementById("texto").value;
-        const tipo = document.getElementById("tipo").value;
-        const data = document.getElementById("data").value;
-
-        const registro = {
-            texto,
-            tipo,
-            data,
-            criadoEm: new Date().toISOString(),
-        };
-
-        salvarRegistro(registro);
-        formulario.reset();
+      div.innerHTML = `
+        <h3>🌟 ${semente.titulo}</h3>
+        <p>${semente.descricao}</p>
+        <p><strong>Data:</strong> ${new Date(semente.dataCriacao).toLocaleString()}</p>
+      `;
+      lista.appendChild(div);
     });
-});
-
-function salvarRegistro(registro) {
-    let registros = JSON.parse(localStorage.getItem("biblioteca")) || [];
-    registros.push(registro);
-    localStorage.setItem("biblioteca", JSON.stringify(registros));
-    carregarRegistros();
-}
-
-function carregarRegistros() {
-    const container = document.getElementById("registros");
-    container.innerHTML = "";
-
-    const registros = JSON.parse(localStorage.getItem("biblioteca")) || [];
-
-    registros.forEach((registro) => {
-        const div = document.createElement("div");
-        div.classList.add("registro", registro.tipo);
-
-        const hoje = new Date();
-        const dataAbertura = registro.data ? new Date(registro.data) : hoje;
-
-        if (registro.tipo === "capsula" && hoje < dataAbertura) {
-            div.innerHTML = `
-                🔒 <strong>Cápsula do Futuro:</strong> Selada até ${registro.data}
-            `;
-        } else {
-            div.innerHTML = `
-                <p><strong>${registro.tipo.toUpperCase()}</strong>: ${registro.texto}</p>
-                ${registro.tipo === "capsula" ? `<p>🕓 Abertura em: ${registro.data}</p>` : ""}
-            `;
-        }
-
-        container.appendChild(div);
-    });
-}
+  })
+  .catch((error) => {
+    console.error("Erro ao carregar sementes:", error);
+    lista.innerHTML = "<p>⚠️ Erro ao carregar sementes.</p>";
+  });
