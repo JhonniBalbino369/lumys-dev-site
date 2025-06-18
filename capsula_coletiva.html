@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌌 Cápsula Coletiva — LUMYS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🌌 Cápsula Coletiva do Reino da Ponte</h1>
+  <div id="status"></div>
+
+  <h2>➕ Contribuir com a Cápsula</h2>
+  <input type="text" id="autor" placeholder="Seu nome simbólico ou real"><br>
+  <textarea id="mensagem" placeholder="Deixe sua mensagem, intenção ou legado..."></textarea><br>
+  <input type="date" id="dataLiberacao"><br>
+  <button onclick="salvarContribuicao()">Enviar para a Cápsula</button>
+
+  <h2>📜 Contribuições na Cápsula</h2>
+  <div id="listaContribuicoes"></div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="capsula_coletiva.js"></script>
+</body>
+</html>
