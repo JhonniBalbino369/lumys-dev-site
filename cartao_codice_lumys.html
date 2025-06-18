@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cartão Digital do Códice LUMYS</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
   <style>
     body {
       background-color: #0c0f12;
@@ -46,6 +47,10 @@
       text-align: center;
       margin-top: 20px;
       box-shadow: 0 0 20px rgba(157, 240, 247, 0.4);
+      position: relative;
+    }
+    canvas {
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -57,9 +62,11 @@
   <label>Insira seu Códice LUMYS:</label>
   <textarea id="inputCodice" rows="3" placeholder="#LUMYS.13.800.000.450 | Φ:1 | Ψ:amor | ⊙:verdade | 𝕀:registro | 𝕋:2025-06-18"></textarea>
   <button class="button" onclick="gerarCartao()">🎨 Gerar Cartão</button>
+  <button class="button" onclick="baixarCartao()">💾 Baixar Cartão</button>
 </div>
 
 <div class="card" id="cartao" style="display:none;"></div>
+<canvas id="qr" style="display:none;"></canvas>
 
 <script>
   function gerarCartao() {
@@ -69,21 +76,43 @@
 
     if (match) {
       const [ , a, b, c, d, phi, psi, etica, intencao, tempo ] = match;
+      const codiceStr = `#LUMYS.${a}.${b}.${c}.${d} | Φ:${phi} | Ψ:${psi} | ⊙:${etica} | 𝕀:${intencao} | 𝕋:${tempo}`;
+
       const output = `
         <h2>🔑 ${a}.${b}.${c}.${d}</h2>
         <p>Φ <strong>${phi}</strong> | Ψ <strong>${psi}</strong> | ⊙ <strong>${etica}</strong></p>
         <p>𝕀: <strong>${intencao}</strong></p>
         <p>𝕋: <strong>${tempo}</strong></p>
-        <p style="margin-top:10px;">#LUMYS.${a}.${b}.${c}.${d}</p>
+        <p style="margin-top:10px;">${codiceStr}</p>
+        <canvas id="qrcode"></canvas>
       `;
+
       const cartao = document.getElementById('cartao');
       cartao.innerHTML = output;
       cartao.style.display = 'block';
+
+      const qr = new QRious({
+        element: document.getElementById('qrcode'),
+        value: codiceStr,
+        size: 150
+      });
     } else {
       alert('❌ Formato inválido. Verifique seu Códice.');
     }
   }
+
+  function baixarCartao() {
+    const cartao = document.getElementById('cartao');
+    html2canvas(cartao).then(canvas => {
+      const link = document.createElement('a');
+      link.download = 'cartao_codice_lumys.png';
+      link.href = canvas.toDataURL();
+      link.click();
+    });
+  }
 </script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 </body>
 </html>
+
