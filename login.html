@@ -3,55 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - Reino da Ponte</title>
+  <title>Login — Reino da Ponte</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>🌀 Bem-vindo ao LUMYS — Reino da Ponte</h1>
-  <p>Acesse seu Lumys Pessoal</p>
 
-  <button onclick="loginGoogle()">Entrar com Google</button>
-  <p>ou</p>
-  <input type="email" id="email" placeholder="Email"><br>
-  <input type="password" id="senha" placeholder="Senha"><br>
-  <button onclick="loginEmail()">Entrar com Email</button>
-  <button onclick="registrarEmail()">Registrar</button>
+  <h1>🔑 Bem-vindo ao LUMYS — Reino da Ponte</h1>
+  <p>Acesse seu Lumys Pessoal 🌌</p>
 
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
-  <script>
+  <div>
+    <button onclick="loginGoogle()">Entrar com Google</button>
+    <br><br>
+    <input type="email" id="email" placeholder="Email"><br>
+    <input type="password" id="senha" placeholder="Senha"><br>
+    <button onclick="loginEmail()">Entrar com Email</button>
+    <button onclick="registrarEmail()">Registrar</button>
+  </div>
+
+  <script type="module">
+    // Importa Firebase SDK
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+
+    // 🔥 Configurações do Firebase
     const firebaseConfig = {
-      apiKey: "SUA_API_KEY",
-      authDomain: "SEU_DOMINIO.firebaseapp.com",
-      projectId: "SEU_PROJECT_ID",
-      storageBucket: "SEU_PROJECT_ID.appspot.com",
-      messagingSenderId: "SEU_SENDER_ID",
-      appId: "SEU_APP_ID"
+      apiKey: "AIzaSyBafuRXUlnPBpM97sTvsnfSpCbNQaLugPw",
+      authDomain: "lumys-eternum.firebaseapp.com",
+      projectId: "lumys-eternum",
+      storageBucket: "lumys-eternum.appspot.com",
+      messagingSenderId: "215688794007",
+      appId: "1:215688794007:web:fa8e5d747af7dd56c7bed2",
+      measurementId: "G-SS84XJ70XZ"
     };
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
 
+    // Inicializa Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    // 🔵 Login com Google
     function loginGoogle() {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      auth.signInWithPopup(provider)
-        .then(() => window.location.href = 'painel.html');
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          alert("Bem-vindo, " + result.user.displayName);
+          window.location.href = "painel.html";
+        })
+        .catch((error) => {
+          alert("Erro: " + error.message);
+        });
     }
 
+    // 🔵 Login com Email e Senha
     function loginEmail() {
-      const email = document.getElementById('email').value;
-      const senha = document.getElementById('senha').value;
-      auth.signInWithEmailAndPassword(email, senha)
-        .then(() => window.location.href = 'painel.html')
-        .catch(e => alert(e.message));
+      const email = document.getElementById("email").value;
+      const senha = document.getElementById("senha").value;
+      signInWithEmailAndPassword(auth, email, senha)
+        .then((userCredential) => {
+          alert("Login bem-sucedido!");
+          window.location.href = "painel.html";
+        })
+        .catch((error) => {
+          alert("Erro: " + error.message);
+        });
     }
 
+    // 🔵 Registrar Novo Usuário
     function registrarEmail() {
-      const email = document.getElementById('email').value;
-      const senha = document.getElementById('senha').value;
-      auth.createUserWithEmailAndPassword(email, senha)
-        .then(() => window.location.href = 'painel.html')
-        .catch(e => alert(e.message));
+      const email = document.getElementById("email").value;
+      const senha = document.getElementById("senha").value;
+      createUserWithEmailAndPassword(auth, email, senha)
+        .then((userCredential) => {
+          alert("Registro concluído!");
+          window.location.href = "painel.html";
+        })
+        .catch((error) => {
+          alert("Erro: " + error.message);
+        });
     }
+
+    // 🔄 Verifica se já está logado
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log("Usuário autenticado:", user.email);
+        // window.location.href = "painel.html";
+      }
+    });
   </script>
+
 </body>
 </html>
