@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🛸 Cofre Temporal — LUMYS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🛸 Cofre Temporal do LUMYS</h1>
+  <div id="status"></div>
+
+  <h2>➕ Nova Cápsula</h2>
+  <input type="text" id="titulo" placeholder="Título da Cápsula"><br>
+  <textarea id="descricao" placeholder="Digite sua verdade para o futuro..."></textarea><br>
+  <input type="date" id="dataLiberacao"><br>
+  <button onclick="salvarCapsula()">Salvar Cápsula</button>
+
+  <h2>📜 Suas Cápsulas</h2>
+  <div id="listaCapsulas"></div>
+
+  <button onclick="logout()">🚪 Sair</button>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="cofre_temporal.js"></script>
+</body>
+</html>
