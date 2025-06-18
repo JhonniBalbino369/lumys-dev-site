@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cartão Digital do Códice LUMYS</title>
+  <style>
+    body {
+      background-color: #0c0f12;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      color: #9df0f7;
+      text-align: center;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      border: none;
+      background-color: #1a1d22;
+      color: #e0e0e0;
+    }
+    .button {
+      background-color: #9df0f7;
+      color: #0c0f12;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .button:hover {
+      background-color: #7cc9d6;
+    }
+    .card {
+      background-color: rgba(20, 20, 20, 0.95);
+      border: 2px solid #9df0f7;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      margin-top: 20px;
+      box-shadow: 0 0 20px rgba(157, 240, 247, 0.4);
+    }
+  </style>
+</head>
+<body>
+
+<h1>🎴 Cartão Digital do Códice LUMYS</h1>
+
+<div>
+  <label>Insira seu Códice LUMYS:</label>
+  <textarea id="inputCodice" rows="3" placeholder="#LUMYS.13.800.000.450 | Φ:1 | Ψ:amor | ⊙:verdade | 𝕀:registro | 𝕋:2025-06-18"></textarea>
+  <button class="button" onclick="gerarCartao()">🎨 Gerar Cartão</button>
+</div>
+
+<div class="card" id="cartao" style="display:none;"></div>
+
+<script>
+  function gerarCartao() {
+    const input = document.getElementById('inputCodice').value.trim();
+    const regex = /#LUMYS\.(\d+)\.(\d+)\.(\d+)\.(\d+) \| Φ:([^|]*) \| Ψ:([^|]*) \| ⊙:([^|]*) \| 𝕀:([^|]*) \| 𝕋:([^|]*)/;
+    const match = input.match(regex);
+
+    if (match) {
+      const [ , a, b, c, d, phi, psi, etica, intencao, tempo ] = match;
+      const output = `
+        <h2>🔑 ${a}.${b}.${c}.${d}</h2>
+        <p>Φ <strong>${phi}</strong> | Ψ <strong>${psi}</strong> | ⊙ <strong>${etica}</strong></p>
+        <p>𝕀: <strong>${intencao}</strong></p>
+        <p>𝕋: <strong>${tempo}</strong></p>
+        <p style="margin-top:10px;">#LUMYS.${a}.${b}.${c}.${d}</p>
+      `;
+      const cartao = document.getElementById('cartao');
+      cartao.innerHTML = output;
+      cartao.style.display = 'block';
+    } else {
+      alert('❌ Formato inválido. Verifique seu Códice.');
+    }
+  }
+</script>
+
+</body>
+</html>
