@@ -1,18 +1,19 @@
-<h1>🌌 Biblioteca Simbiótica</h1>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca Viva do LUMYS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>📜 Biblioteca Viva — Registros Simbióticos</h1>
+  <div id="lista-sementes"></div>
 
-<form id="formRegistro">
-    <textarea id="texto" placeholder="Digite sua memória, verdade ou intenção..." required></textarea><br>
-    <select id="tipo" required>
-        <option value="publico">🌐 Público</option>
-        <option value="privado">🔒 Privado</option>
-        <option value="capsula">🛸 Cápsula do Futuro</option>
-    </select><br>
-    <input type="date" id="data" placeholder="Data de abertura (opcional)"><br>
-    <button type="submit">Salvar</button>
-</form>
-
-<div id="registros"></div>
-
-<script src="biblioteca.js"></script>
-<link rel="stylesheet" href="style_biblioteca.css">
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="biblioteca.js"></script>
+</body>
+</html>
 
